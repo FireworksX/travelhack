@@ -2,12 +2,12 @@
   background: var(--background-3);
   border-radius: 15px;
   text-align: center;
-  padding: 15px 0 10px 0;
+  padding: 15px 20px 10px 20px;
+  box-sizing: border-box;
 }
 
 .cover {
   height: 100px;
-  background: var(--gray);
 }
 
 .name {
@@ -25,3 +25,13 @@
   margin-bottom: 4px;
 }
 
+.button {
+  font-weight: 500;
+  color: var(--white);
+  width: 100%;
+  height: 30px;
+  background: var(--accent);
+  border-radius: 10px;
+  border: none;
+  font-size: 10px;
+}
