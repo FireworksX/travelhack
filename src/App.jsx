@@ -1,55 +1,49 @@
-import React, { useState, useEffect } from 'react';
-import bridge from '@vkontakte/vk-bridge';
+import React, {useState} from 'react';
 import { AdaptivityProvider, AppRoot, Epic, Tabbar, TabbarItem, ScreenSpinner, View } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 
-import Home from './panels/Home';
-import Icon28NewsfeedOutline from "@vkontakte/icons/dist/28/newsfeed_outline";
 import {observer} from "mobx-react";
+import {News} from "./pages/News";
+import Icon28ClipOutline from "@vkontakte/icons/dist/28/clip_outline";
+import Icon28UserCircleOutline from "@vkontakte/icons/dist/28/user_circle_outline";
+import { Icon28LikeOutline, Icon28Newsfeed, Icon28AllCategoriesOutline } from '@vkontakte/icons';
 
 const App = observer(() => {
+	const [activeStory, setActiveStory] = useState('feed')
+
+	const changeStory = (value) => {
+		setActiveStory(value)
+	}
 
 	return (
 		<AdaptivityProvider>
 			<AppRoot>
-				<Epic activeStory={activeStory} tabbar={!isDesktop &&
+				<Epic activeStory={activeStory} tabbar={
 				<Tabbar>
 					<TabbarItem
-						onClick={onStoryChange}
 						selected={activeStory === 'feed'}
-						data-story="feed"
-						text="Новости"
-					><Icon28NewsfeedOutline /></TabbarItem>
+						onClick={() => changeStory('feed')}
+					><Icon28Newsfeed /></TabbarItem>
 					<TabbarItem
-						onClick={onStoryChange}
-						selected={activeStory === 'services'}
+						selected={activeStory === 'favorites'}
+						onClick={() => changeStory('favorites')}
 						data-story="services"
-						text="Сервисы"
-					><Icon28ServicesOutline/></TabbarItem>
+					><Icon28LikeOutline/></TabbarItem>
 					<TabbarItem
-						onClick={onStoryChange}
-						selected={activeStory === 'messages'}
-						data-story="messages"
-						label="12"
-						text="Сообщения"
-					><Icon28MessageOutline /></TabbarItem>
+						selected={activeStory === 'trip'}
+						onClick={() => changeStory('trip')}
+					><Icon28AllCategoriesOutline /></TabbarItem>
 					<TabbarItem
-						onClick={onStoryChange}
-						selected={activeStory === 'clips'}
-						data-story="clips"
-						text="Клипы"
+						selected={activeStory === 'notification'}
+						onClick={() => changeStory('notification')}
 					><Icon28ClipOutline /></TabbarItem>
 					<TabbarItem
-						onClick={onStoryChange}
 						selected={activeStory === 'profile'}
-						data-story="profile"
-						text="Профиль"
+						onClick={() => changeStory('profile')}
 					><Icon28UserCircleOutline /></TabbarItem>
 				</Tabbar>
 				}>
-					<View activePanel={activePanel} popout={popout}>
-						<Home id='home' fetchedUser={fetchedUser} go={go} />
-					</View>
+					<News id='feed'/>
 				</Epic>
 			</AppRoot>
 		</AdaptivityProvider>
