@@ -17,7 +17,7 @@ export const newsObjectInfoQuery = ({ id }) =>
             },
             sourceName: 'tripadvisor',
           },
-          social_info: {
+          socialInfo: {
             visitedCount: 1092,
             likesCount: 90,
             isLiked: false,
