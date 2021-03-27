@@ -1,12 +1,12 @@
-import { makeObservable, observable } from "mobx"
-import { NavigationStore } from "./NavigationStore"
+import { makeObservable, observable } from 'mobx';
+import { NavigationStore } from './NavigationStore';
 
 export class RootStore {
-  navigation = null
+  navigation = null;
   constructor(value) {
     makeObservable(this, {
-        navigation: observable.ref,
-    })
-    this.navigation = new NavigationStore()
+      navigation: observable.ref,
+    });
+    this.navigation = new NavigationStore();
   }
 }
