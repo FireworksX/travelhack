@@ -26,6 +26,7 @@ import {
   Icon28Notifications,
 } from '@vkontakte/icons';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
+import { Planner } from './pages/Planner/Planner';
 const queryClient = new QueryClient();
 const rootStore = new RootStore();
 
@@ -68,9 +69,9 @@ const App = observer(() => {
                 <Icon28LikeOutline />
               </TabbarItem>
               <TabbarItem
-                selected={activeStory === 'trip'}
+                selected={activeStory === 'planner'}
                 text="Планер"
-                onClick={() => setStory('trip')}
+                onClick={() => setStory('planner')}
               >
                 <Icon28AddCircleOutline />
               </TabbarItem>
@@ -93,6 +94,7 @@ const App = observer(() => {
         >
           <Onboarding id="onBoarding" />
           <News id="feed" />
+          <Planner id="planner" />
         </Epic>
       </AppRoot>
     </AdaptivityProvider>
