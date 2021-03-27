@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 import { newsObjectInfoQuery } from '../api/newsObjectInfoQuery';
-export const useNewsObjectContent = ({ id }) => {
+export const useNewsObjectInfo = ({ id }) => {
   const { isLoading, error, data } = useQuery('newsObjectInfo', () =>
     newsObjectInfoQuery({ id })
   );
