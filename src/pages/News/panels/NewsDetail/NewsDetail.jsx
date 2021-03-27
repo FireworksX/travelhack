@@ -19,6 +19,7 @@ import {
 } from '@vkontakte/icons';
 
 export const NewsDetail = ({ onBack, newsId, newsInfo }) => {
+  if (newsInfo == null) return null;
   return (
     <Panel>
       <div className={styles.root}>
