@@ -13,14 +13,14 @@ export const newsObjectInfoQuery = ({ id }) =>
               'https://www.fieldmuseum.org/sites/default/files/styles/3x2_1400w/public/2018_03_06_fieldmuseum_lhewett-01.jpg',
             category: {
               name: 'музеи',
-              category_id: 1,
+              categoryId: 1,
             },
-            source_name: 'tripadvisor',
+            sourceName: 'tripadvisor',
           },
           social_info: {
-            visited_count: 1092,
-            likes_count: 90,
-            is_liked: false,
+            visitedCount: 1092,
+            likesCount: 90,
+            isLiked: false,
           },
           content: [
             {
@@ -40,6 +40,6 @@ export const newsObjectInfoQuery = ({ id }) =>
             },
           ],
         }),
-      3000
+      500
     )
   );

@@ -7,7 +7,7 @@ import {
   PanelHeaderButton,
   FixedLayout,
   Div,
-  Spinner,
+  ScreenSpinner,
 } from '@vkontakte/vkui';
 import { UiDiv } from '../../../../components/UiDiv/UiDiv';
 import { useNewsObjectInfo } from '../../../../hooks/useNewsObjectInfo';
@@ -18,12 +18,8 @@ import {
   Icon36ChevronLeftOutline,
 } from '@vkontakte/icons';
 
-export const NewsDetail = ({ onBack, newsId }) => {
-  const { data: newsInfo, isLoading } = useNewsObjectInfo({ id: newsId });
-
-  return isLoading ? (
-    <Spinner />
-  ) : newsInfo ? (
+export const NewsDetail = ({ onBack, newsId, newsInfo }) => {
+  return (
     <Panel>
       <div className={styles.root}>
         <PanelHeader
@@ -83,5 +79,5 @@ export const NewsDetail = ({ onBack, newsId }) => {
         </FixedLayout>
       </div>
     </Panel>
-  ) : null;
+  );
 };

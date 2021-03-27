@@ -37,12 +37,6 @@ const App = observer(() => {
 
   const hiddenTabbar = activeStory === 'onBoarding';
 
-  useEffect(() => {
-    setTimeout(() => {
-      setStory('feed');
-    }, 2000);
-  }, []);
-
   return (
     <AdaptivityProvider>
       <AppRoot>
