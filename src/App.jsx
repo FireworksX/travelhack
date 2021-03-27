@@ -1,47 +1,46 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import { AdaptivityProvider, AppRoot, Epic, Tabbar, TabbarItem, ScreenSpinner, View } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 
 import {observer} from "mobx-react-lite";
 import {News} from "./pages/News";
+import {RootStore} from './stores/RootStore'
+import {StoreContext} from './helpers/mobx-react'
 import Icon28ClipOutline from "@vkontakte/icons/dist/28/clip_outline";
 import Icon28UserCircleOutline from "@vkontakte/icons/dist/28/user_circle_outline";
 import { Icon28LikeOutline, Icon28Newsfeed, Icon28AllCategoriesOutline } from '@vkontakte/icons';
-
+const rootStore = new RootStore()
 const App = observer(() => {
-	const rootStore = new RootStore()
-	const [activeStory, setActiveStory] = useState('feed')
-
-	const changeStory = (value) => {
-		setActiveStory(value)
-	}
+	const { navigation: {
+		activeStory,
+		setStory
+	} } = useContext(StoreContext)
 
 	return (
-		<StoreContext.Provider value={rootStore}>
 			<AdaptivityProvider>
 				<AppRoot>
 					<Epic activeStory={activeStory} tabbar={
 					<Tabbar>
 						<TabbarItem
 							selected={activeStory === 'feed'}
-							onClick={() => changeStory('feed')}
+							onClick={() => setStory('feed')}
 						><Icon28Newsfeed /></TabbarItem>
 						<TabbarItem
 							selected={activeStory === 'favorites'}
-							onClick={() => changeStory('favorites')}
+							onClick={() => setStory('favorites')}
 							data-story="services"
 						><Icon28LikeOutline/></TabbarItem>
 						<TabbarItem
 							selected={activeStory === 'trip'}
-							onClick={() => changeStory('trip')}
+							onClick={() => setStory('trip')}
 						><Icon28AllCategoriesOutline /></TabbarItem>
 						<TabbarItem
 							selected={activeStory === 'notification'}
-							onClick={() => changeStory('notification')}
+							onClick={() => setStory('notification')}
 						><Icon28ClipOutline /></TabbarItem>
 						<TabbarItem
 							selected={activeStory === 'profile'}
-							onClick={() => changeStory('profile')}
+							onClick={() => setStory('profile')}
 						><Icon28UserCircleOutline /></TabbarItem>
 					</Tabbar>
 					}>
@@ -49,9 +48,8 @@ const App = observer(() => {
 					</Epic>
 				</AppRoot>
 			</AdaptivityProvider>
-		</StoreContext.Provider>
 	);
 })
 
-export default App;
+export default () =>  <StoreContext.Provider value={rootStore}><App/></StoreContext.Provider>;
 
