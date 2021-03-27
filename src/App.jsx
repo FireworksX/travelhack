@@ -9,7 +9,11 @@ import {StoreContext} from './helpers/mobx-react'
 import Icon28ClipOutline from "@vkontakte/icons/dist/28/clip_outline";
 import Icon28UserCircleOutline from "@vkontakte/icons/dist/28/user_circle_outline";
 import { Icon28LikeOutline, Icon28Newsfeed, Icon28AllCategoriesOutline } from '@vkontakte/icons';
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
+const queryClient = new QueryClient()
 const rootStore = new RootStore()
+
+
 const App = observer(() => {
 	const { navigation: {
 		activeStory,
@@ -51,5 +55,11 @@ const App = observer(() => {
 	);
 })
 
-export default () =>  <StoreContext.Provider value={rootStore}><App/></StoreContext.Provider>;
+export default () =>  (
+	<QueryClientProvider client={queryClient}>
+		<StoreContext.Provider value={rootStore}>
+			<App/>
+		</StoreContext.Provider>
+	</QueryClientProvider>
+	);
 
