@@ -7,6 +7,12 @@
   );
   height: 450px;
   text-align: center;
+  padding-top: 40px;
 }
 
-.header
+.headerTitle {
+  font-weight: 800;
+  color: var(--white);
+  font-size: 26px;
+  line-height: 31px;
+}
