@@ -1,11 +1,12 @@
 import React from 'react';
 import styles from './NewsCard.module.scss'
-import {Div} from "@vkontakte/vkui";
 import { Icon24MoreHorizontal } from '@vkontakte/icons';
+import {UiDiv} from "../UiDiv/UiDiv";
+import { Icon28FireOutline, Icon28ShareOutline } from '@vkontakte/icons';
 
 export const NewsCard = () => {
     return <div>
-        <Div>
+        <UiDiv>
             <div className={styles.header}>
                 <div className={styles.icon}/>
                 <div className={styles.category}>Музеи</div>
@@ -20,6 +21,17 @@ export const NewsCard = () => {
             <div className={styles.description}>
                 Тут просто много бесполезного текста, тут тоже много бесполезного текста, тут тоже много бесполезного текста, тут тоже много бесполезного текста, тут тоже много бесполезного текста, тут тоже много бесполезного текста, тут тоже много...
             </div>
-        </Div>
+            <div className={styles.more}>Читать полностью...</div>
+        </UiDiv>
+        <div className={styles.cover}></div>
+        <UiDiv className={styles.footer}>
+            <button className={styles.footerButton}>
+                <Icon28FireOutline/>
+                <span>120</span>
+            </button>
+            <button className={styles.footerButton}>
+                <Icon28ShareOutline/>
+            </button>
+        </UiDiv>
     </div>
 }

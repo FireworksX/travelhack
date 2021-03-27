@@ -9,10 +9,9 @@ import {observer} from "mobx-react-lite";
 import {News} from "./pages/News";
 import {RootStore} from './stores/RootStore'
 import {StoreContext} from './helpers/mobx-react'
-import Icon28ClipOutline from "@vkontakte/icons/dist/28/clip_outline";
 import Icon28UserCircleOutline from "@vkontakte/icons/dist/28/user_circle_outline";
 import {Onboarding} from "./pages/Onboarding/Onboarding";
-import { Icon28LikeOutline, Icon28Newsfeed, Icon28AllCategoriesOutline } from '@vkontakte/icons';
+import { Icon28LikeOutline, Icon28Newsfeed, Icon28AddCircleOutline, Icon28Notifications } from '@vkontakte/icons';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
 const queryClient = new QueryClient()
 const rootStore = new RootStore()
