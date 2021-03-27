@@ -1,9 +1,13 @@
-class NavigationStore {
-    @observable activeStory = 'news'
+import { makeAutoObservable } from "mobx"
 
-    @action
+export class NavigationStore {
+    activeStory = 'news'
+
     setStory(name) {
         this.activeStory = name
+    }
+    constructor() {
+        makeAutoObservable(this)
     }
 }
 
