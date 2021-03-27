@@ -4,22 +4,35 @@ import { Icon24MoreHorizontal } from '@vkontakte/icons';
 import {UiDiv} from "../UiDiv/UiDiv";
 import { Icon28FireOutline, Icon28ShareOutline } from '@vkontakte/icons';
 
-export const NewsCard = () => {
+export const NewsCard = ({
+    id,
+    title,
+    description,
+    image,
+    category: {
+      name: categoryName,
+      category_id
+   },
+   source_name: sourceName,
+   social_info: {
+    visited_count,
+    likes_count: likesCount,
+    is_liked: isLike
+    }
+  }) => {
     return <div>
         <UiDiv>
             <div className={styles.header}>
                 <div className={styles.icon}/>
-                <div className={styles.category}>Музеи</div>
-                <div className={styles.source}>— Название СМИ</div>
+                <div className={styles.category}>{categoryName}</div>
+                <div className={styles.source}>— {sourceName}</div>
                 <button className={styles.other}>
                     <Icon24MoreHorizontal/>
                 </button>
             </div>
-            <div className={styles.title}>Большой заголовок в 3 строки,
-                осталось заполнить 2 строки,
-                еще чуть-чуть... готово!</div>
+            <div className={styles.title}>{title}</div>
             <div className={styles.description}>
-                Тут просто много бесполезного текста, тут тоже много бесполезного текста, тут тоже много бесполезного текста, тут тоже много бесполезного текста, тут тоже много бесполезного текста, тут тоже много бесполезного текста, тут тоже много...
+                {description}
             </div>
             <div className={styles.more}>Читать полностью...</div>
         </UiDiv>
@@ -27,7 +40,7 @@ export const NewsCard = () => {
         <UiDiv className={styles.footer}>
             <button className={styles.footerButton}>
                 <Icon28FireOutline/>
-                <span>120</span>
+                <span>{likesCount}</span>
             </button>
             <button className={styles.footerButton}>
                 <Icon28ShareOutline/>
