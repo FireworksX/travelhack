@@ -6,7 +6,7 @@ import styles from './App.module.scss'
 
 
 import {observer} from "mobx-react-lite";
-import {News} from "./pages/News";
+import {News} from "./pages/News/News";
 import {RootStore} from './stores/RootStore'
 import {StoreContext} from './helpers/mobx-react'
 import Icon28UserCircleOutline from "@vkontakte/icons/dist/28/user_circle_outline";
