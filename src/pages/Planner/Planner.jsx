@@ -30,11 +30,13 @@ import { CarCard } from '../../components/CarCard/CarCard';
 import { useCities } from '../../hooks/useCities';
 import { plannerReducer } from './plannerReducer';
 import { format } from 'date-fns';
+import { useCategoriesByCityName } from '../../hooks/useCategoriesByCityName';
+import { useReducerWithLogger } from '../../hooks/useReducerWithLogger';
 export const Planner = () => {
   const [activePanel, setActivePanel] = useState('main');
   const [activeModal, setActiveModal] = useState(null);
   const [{ city, categories, dateTo, dateFrom }, dispatch] = useReducer(
-    plannerReducer,
+    useReducerWithLogger(plannerReducer),
     {
       city: null,
       categories: null,
@@ -43,6 +45,17 @@ export const Planner = () => {
     }
   );
   const cities = useCities();
+  const {
+    data: categoriesLabels,
+    isFetching: isCategoriesFetching,
+  } = useCategoriesByCityName({ cityName: city });
+  useEffect(() => {
+    if (!isCategoriesFetching && categoriesLabels)
+      dispatch({
+        type: 'set-categories',
+        payload: categoriesLabels.map((c) => ({ ...c, chosen: false })),
+      });
+  }, [categoriesLabels, isCategoriesFetching]);
   useEffect(() => dispatch({ type: 'set-cities', payload: cities }), [cities]);
   const modalRoot = (
     <ModalRoot activeModal={activeModal}>
@@ -136,7 +149,29 @@ export const Planner = () => {
               </div>
               <HorizontalScroll>
                 <div className={styles.cats}>
-                  <button className={styles.categoryCell}>Места</button>
+                  {categories?.map(({ name, id, chosen }) => (
+                    <button
+                      key={`category-id-${id}`}
+                      className={cn(styles.categoryCell, {
+                        [styles.categoryCellActive]: chosen,
+                      })}
+                      onClick={() =>
+                        dispatch({
+                          type: 'set-categories',
+                          payload: categories.map(
+                            ({ id: _id, name, chosen }) => ({
+                              id: _id,
+                              name,
+                              chosen: _id === id ? !chosen : chosen,
+                            })
+                          ),
+                        })
+                      }
+                    >
+                      {name}
+                    </button>
+                  ))}
+                  {/* <button className={styles.categoryCell}>Места</button>
                   <button
                     className={cn(
                       styles.categoryCell,
@@ -147,8 +182,8 @@ export const Planner = () => {
                   </button>
                   <button className={styles.categoryCell}>Новости</button>
                   <button className={styles.categoryCell}>Места</button>
-                  <button className={styles.categoryCell}>Места</button>
-                  <button className={styles.categoryCell}>Места</button>
+                  <button className={styles.categoryCell}>Места</button> */}
+                  {/* <button className={styles.categoryCell}>Места</button> */}
                 </div>
               </HorizontalScroll>
               <button className={styles.submit}>Построить маршрут</button>
