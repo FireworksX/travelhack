@@ -37,6 +37,15 @@ export const newsObjectInfoQuery = ({ id }) =>
             payload:
               'а вот тут дополнительный текст, которого не было в превьюшке',
           },
+          {
+            type: 'location',
+            payload: {
+              name: 'Парк "Диво Остров"',
+              image:
+                'https://kidpassage.com/images/activity/park-attraktsionov-divo-ostrov/Divo_Ostrov_06.jpg',
+              is_favorite: true,
+            },
+          },
         ],
       });
     }, 500)
