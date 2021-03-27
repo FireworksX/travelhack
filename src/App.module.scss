@@ -1,17 +1,20 @@
 :root {
   --white: #fff;
   --dark: #343434;
-  --gray: #F4F4F4;
-  --background: #EBECF0;
-  --gray-dark: #BDBDBD;
+  --gray: #f4f4f4;
+  --background: #ebecf0;
+  --background-2: #E5E5E5;
+  --background-3: #FAFAFA;
+  --gray-dark: #bdbdbd;
   --gray-dark-2: #808080;
-  --accent: #7E80FF;
-  --accent-blue: #0075FF;
-  --accent-red: #E9545D;
+  --accent: #7e80ff;
+  --accent-orange: #FFB800;
+  --accent-blue: #0075ff;
+  --accent-red: #e9545d;
 }
 
 .tabbar {
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .hidden {
