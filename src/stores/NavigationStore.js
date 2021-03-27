@@ -1,7 +1,7 @@
 import { makeAutoObservable, makeObservable, observable, action } from "mobx"
 
 export class NavigationStore {
-    activeStory = 'feed'
+    activeStory = 'onBoarding'
 
     setStory = (name) => {
         this.activeStory = name

@@ -1,0 +1,11 @@
+:root {
+  --dark: #343434;
+}
+
+.tabbar {
+  transition: .2s;
+}
+
+.hidden {
+  transform: translateY(100%);
+}
