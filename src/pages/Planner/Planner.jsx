@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import cn from 'classnames';
 import styles from './Planner.module.scss';
 import {
@@ -27,28 +27,79 @@ import driver from '../../img/driver.svg';
 import carSedan from '../../img/carSedan.png';
 import carJeep from '../../img/carJeep.png';
 import { CarCard } from '../../components/CarCard/CarCard';
-
+import { useCities } from '../../hooks/useCities';
+import { plannerReducer } from './plannerReducer';
+import { format } from 'date-fns';
+import { useCategoriesByCityName } from '../../hooks/useCategoriesByCityName';
+import { useReducerWithLogger } from '../../hooks/useReducerWithLogger';
 export const Planner = () => {
   const [activePanel, setActivePanel] = useState('main');
   const [activeModal, setActiveModal] = useState(null);
-
+  const [{ city, categories, dateTo, dateFrom }, dispatch] = useReducer(
+    useReducerWithLogger(plannerReducer),
+    {
+      city: null,
+      categories: null,
+      dateTo: null,
+      dateFrom: null,
+    }
+  );
+  const cities = useCities();
+  const {
+    data: categoriesLabels,
+    isFetching: isCategoriesFetching,
+  } = useCategoriesByCityName({ cityName: city });
+  useEffect(() => {
+    if (!isCategoriesFetching && categoriesLabels)
+      dispatch({
+        type: 'set-categories',
+        payload: categoriesLabels.map((c) => ({ ...c, chosen: false })),
+      });
+  }, [categoriesLabels, isCategoriesFetching]);
+  useEffect(() => dispatch({ type: 'set-cities', payload: cities }), [cities]);
   const modalRoot = (
     <ModalRoot activeModal={activeModal}>
       <ModalPage id="cities" onClose={() => setActiveModal(null)}>
         <ModalPageHeader>Города</ModalPageHeader>
         <Search />
-        <Cell>Сочи</Cell>
+        {cities
+          .filter((_city) => _city !== city)
+          .map((_city) => (
+            <Cell
+              onClick={() => {
+                dispatch({ type: 'set-city', payload: _city });
+                setActiveModal(null);
+              }}
+              key={`city-${_city}`}
+            >
+              {_city}
+            </Cell>
+          ))}
       </ModalPage>
       <ModalPage id="dateFrom" onClose={() => setActiveModal(null)}>
         <div className={styles.calendarWrapper}>
           <ModalPageHeader>Дата начала</ModalPageHeader>
-          <DatePickerCalendar date={new Date()} locale={enGB} />
+          <DatePickerCalendar
+            date={dateFrom || new Date()}
+            onDateChange={(date) => {
+              dispatch({ type: 'set-dateFrom', payload: date });
+              setActiveModal(null);
+            }}
+            locale={enGB}
+          />
         </div>
       </ModalPage>
       <ModalPage id="dateTo" onClose={() => setActiveModal(null)}>
         <div className={styles.calendarWrapper}>
           <ModalPageHeader>Дата окончания</ModalPageHeader>
-          <DatePickerCalendar date={new Date()} locale={enGB} />
+          <DatePickerCalendar
+            date={dateTo || new Date()}
+            locale={enGB}
+            onDateChange={(date) => {
+              dispatch({ type: 'set-dateTo', payload: date });
+              setActiveModal(null);
+            }}
+          />
         </div>
       </ModalPage>
     </ModalRoot>
@@ -70,8 +121,8 @@ export const Planner = () => {
                 <span className={styles.sideIcon}>
                   <Icon24PlaceOutline />
                 </span>
-                Москва
-                <button className={styles.afterIcon}>
+                {city}
+                <button type="button" className={styles.afterIcon}>
                   <Icon24LocationOutline />
                 </button>
               </button>
@@ -83,19 +134,44 @@ export const Planner = () => {
                   <span className={styles.sideIcon}>
                     <Icon24CalendarOutline />
                   </span>
-                  Начало
+                  {(dateFrom && format(dateFrom, 'yyyy-mm-dd')) || 'Начало'}
                 </button>
 
-                <button className={styles.date}>
+                <button
+                  className={styles.date}
+                  onClick={() => setActiveModal('dateTo')}
+                >
                   <span className={styles.sideIcon}>
                     <Icon24CalendarOutline />
                   </span>
-                  Конец
+                  {(dateTo && format(dateTo, 'yyyy-mm-dd')) || 'Конец'}
                 </button>
               </div>
               <HorizontalScroll>
                 <div className={styles.cats}>
-                  <button className={styles.categoryCell}>Места</button>
+                  {categories?.map(({ name, id, chosen }) => (
+                    <button
+                      key={`category-id-${id}`}
+                      className={cn(styles.categoryCell, {
+                        [styles.categoryCellActive]: chosen,
+                      })}
+                      onClick={() =>
+                        dispatch({
+                          type: 'set-categories',
+                          payload: categories.map(
+                            ({ id: _id, name, chosen }) => ({
+                              id: _id,
+                              name,
+                              chosen: _id === id ? !chosen : chosen,
+                            })
+                          ),
+                        })
+                      }
+                    >
+                      {name}
+                    </button>
+                  ))}
+                  {/* <button className={styles.categoryCell}>Места</button>
                   <button
                     className={cn(
                       styles.categoryCell,
@@ -106,8 +182,8 @@ export const Planner = () => {
                   </button>
                   <button className={styles.categoryCell}>Новости</button>
                   <button className={styles.categoryCell}>Места</button>
-                  <button className={styles.categoryCell}>Места</button>
-                  <button className={styles.categoryCell}>Места</button>
+                  <button className={styles.categoryCell}>Места</button> */}
+                  {/* <button className={styles.categoryCell}>Места</button> */}
                 </div>
               </HorizontalScroll>
               <button className={styles.submit}>Построить маршрут</button>

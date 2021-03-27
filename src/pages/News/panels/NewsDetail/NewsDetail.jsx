@@ -7,8 +7,10 @@ import {
   PanelHeaderButton,
   FixedLayout,
   Div,
+  ScreenSpinner,
 } from '@vkontakte/vkui';
 import { UiDiv } from '../../../../components/UiDiv/UiDiv';
+import { useNewsObjectInfo } from '../../../../hooks/useNewsObjectInfo';
 import {
   Icon24MoreHorizontal,
   Icon28FireOutline,
@@ -16,7 +18,7 @@ import {
   Icon36ChevronLeftOutline,
 } from '@vkontakte/icons';
 
-export const NewsDetail = ({ onBack }) => {
+export const NewsDetail = ({ onBack, newsId, newsInfo }) => {
   return (
     <Panel>
       <div className={styles.root}>
@@ -32,22 +34,14 @@ export const NewsDetail = ({ onBack }) => {
         <UiDiv>
           <div className={styles.header}>
             <div className={styles.icon} />
-            <div className={styles.category}>Музеи</div>
-            <div className={styles.source}>— Название СМИ</div>
+            <div className={styles.category}>
+              {newsInfo.preview.category.name}
+            </div>
+            <div className={styles.source}>— {newsInfo.preview.sourceName}</div>
           </div>
-          <div className={styles.title}>
-            Большой заголовок в 3 строки, осталось заполнить 2 строки, еще
-            чуть-чуть... готово!
-          </div>
+          <div className={styles.title}>{newsInfo.preview.title}</div>
           <div className={styles.description}>
-            Тут просто много бесполезного текста, тут тоже много бесполезного
-            текста, тут тоже много бесполезного текста, тут тоже много
-            бесполезного текста, тут тоже много бесполезного текста, тут тоже
-            много бесполезного текста, тут тоже много, Тут просто много
-            бесполезного текста, тут тоже много бесполезного текста, тут тоже
-            много бесполезного текста, тут тоже много бесполезного текста, тут
-            тоже много бесполезного текста, тут тоже много бесполезного текста,
-            тут тоже много
+            {newsInfo.preview.description}
           </div>
         </UiDiv>
         <div className={styles.cover}></div>

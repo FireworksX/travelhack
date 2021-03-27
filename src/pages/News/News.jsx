@@ -1,29 +1,59 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './News.module.scss';
-import { View, PanelHeader, Panel } from '@vkontakte/vkui';
+import { View, PanelHeader, Panel, ScreenSpinner } from '@vkontakte/vkui';
 import { NewsCard } from '../../components/NewsCard/NewsCard';
 import { NewsDetail } from './panels/NewsDetail/NewsDetail';
+import { useNewsList } from '../../hooks/useNewsList';
+import { useNewsObjectInfo } from '../../hooks/useNewsObjectInfo';
 
 export const News = () => {
   const [activePanel, setActivePanel] = useState('main');
+  const [activeId, setActiveId] = useState(null);
   const [popout, setPopout] = useState(null);
-
+  const [pause, setPause] = useState(true);
+  useEffect(() => {
+    setPause(activeId === null);
+  }, [activeId]);
+  const { data: newsList, isLoading } = useNewsList();
+  const { data: newsInfo, isLoading: isLoadingDetails } = useNewsObjectInfo({
+    id: activeId,
+    pause,
+  });
+  useEffect(() => {
+    if (!isLoadingDetails && newsInfo) {
+      setActivePanel('detail');
+    }
+  }, [isLoadingDetails, newsInfo]);
   return (
     <View activePanel={activePanel} popout={popout}>
       <Panel id="main">
         <div className={styles.root}>
           <PanelHeader>Новости</PanelHeader>
-          <NewsCard
-            className={styles.cell}
-            onClick={() => setActivePanel('detail')}
-          />
-          <NewsCard
-            className={styles.cell}
-            onClick={() => setActivePanel('detail')}
-          />
+          {isLoading && <ScreenSpinner />}
+          {newsList &&
+            !isLoading &&
+            newsList.map((newsPreview) => (
+              <NewsCard
+                key={`news-card-id-${newsPreview.id}`}
+                {...newsPreview}
+                className={styles.cell}
+                onClick={() => {
+                  // setActivePanel('detail');
+                  setActiveId(newsPreview.id);
+                }}
+              />
+            ))}
         </div>
       </Panel>
-      <NewsDetail id="detail" onBack={() => setActivePanel('main')} />
+      <NewsDetail
+        id="detail"
+        newsId={activeId}
+        newsInfo={newsInfo}
+        onBack={() => {
+          setActivePanel('main');
+          setActiveId(null);
+        }}
+      />
     </View>
   );
 };
