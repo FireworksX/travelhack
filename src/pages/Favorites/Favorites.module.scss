@@ -1,0 +1,26 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+}
+
+.category {
+  height: 35px;
+  padding: 0 25px;
+  background: var(--background-4);
+  color: var(--dark);
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.categoryActive {
+  background: var(--accent);
+  color: var(--white);
+}
