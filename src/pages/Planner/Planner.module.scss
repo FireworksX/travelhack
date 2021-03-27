@@ -41,7 +41,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--gray-dark-2);
+  color: var(--gray-dark);
 }
 
 .afterIcon {
@@ -102,9 +102,34 @@
   padding: 20px 15px 20px 15px;
 }
 
+.cats {
+  @extend .scroll;
+  padding: 0 0 10px 0;
+}
+
 .scrollCell {
   min-width: 220px;
   margin-right: 10px;
+}
+
+.categoryCell {
+  margin-right: 10px;
+  height: 35px;
+  background: #9597ff;
+  color: var(--white);
+  padding: 0 25px;
+  border-radius: 30px;
+  border: none;
+}
+
+.categoryCellActive {
+  background: var(--white);
+  color: var(--dark);
+}
+
+.carCell {
+  @extend .scrollCell;
+  min-width: 200px;
 }
 
 .transfer {
@@ -134,7 +159,6 @@
   border-radius: 5px;
   height: 35px;
 }
-
 
 .transferImage {
   position: absolute;
