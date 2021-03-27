@@ -6,6 +6,7 @@ import {
   Panel,
   PanelHeaderButton,
   FixedLayout,
+  Div,
 } from '@vkontakte/vkui';
 import { UiDiv } from '../../../../components/UiDiv/UiDiv';
 import {
@@ -55,17 +56,33 @@ export const NewsDetail = ({ onBack }) => {
           </div>
         </UiDiv>
         <div className={styles.cover}></div>
+        <div className={styles.description}>
+          Тут просто много бесполезного текста, тут тоже много бесполезного
+          текста, тут тоже много бесполезного текста, тут тоже много
+          бесполезного текста, тут тоже много бесполезного текста, тут тоже
+          много бесполезного текста, тут тоже много, Тут просто много
+          бесполезного текста, тут тоже много бесполезного текста, тут тоже
+          много бесполезного текста, тут тоже много бесполезного текста, тут
+          тоже много бесполезного текста, тут тоже много бесполезного текста,
+          тут тоже много
+        </div>
 
-        <UiDiv className={styles.footer}>
-          <button className={styles.footerButton}>
-            <Icon28FireOutline />
-            <span>120</span>
-          </button>
-          <button className={styles.footerButton}>
-            <Icon28ShareOutline />
-          </button>
-          <div className={styles.views}>13205 просмотров</div>
-        </UiDiv>
+        <Div />
+        <Div />
+        <Div />
+
+        <FixedLayout vertical="bottom">
+          <UiDiv className={styles.footer}>
+            <button className={styles.footerButton}>
+              <Icon28FireOutline />
+              <span>120</span>
+            </button>
+            <button className={styles.footerButton}>
+              <Icon28ShareOutline />
+            </button>
+            <div className={styles.views}>13205 просмотров</div>
+          </UiDiv>
+        </FixedLayout>
       </div>
     </Panel>
   );

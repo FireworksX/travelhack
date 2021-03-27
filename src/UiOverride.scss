@@ -1,3 +1,7 @@
 .vkuiPanelHeader--sizeX-compact .vkuiPanelHeader__separator {
-  height: 1px;
+  padding-top: 0;
+}
+
+.vkuiPanelHeader__content-in {
+  font-weight: 600;
 }
