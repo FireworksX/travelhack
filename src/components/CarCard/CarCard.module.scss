@@ -1,0 +1,27 @@
+.root {
+  background: var(--background-3);
+  border-radius: 15px;
+  text-align: center;
+  padding: 15px 0 10px 0;
+}
+
+.cover {
+  height: 100px;
+  background: var(--gray);
+}
+
+.name {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 18px;
+  color: var(--dark);
+  margin-bottom: 2px;
+}
+
+.description {
+  font-size: 10px;
+  font-weight: 300;
+  color: var(--gray-dark-2);
+  margin-bottom: 4px;
+}
+

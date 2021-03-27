@@ -1,0 +1,50 @@
+.root {
+  background: var(--white);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(204, 204, 204, 0.25);
+  position: relative;
+}
+
+.cover {
+  height: 125px;
+  background: var(--gray);
+}
+
+.body {
+  padding: 15px 10px;
+}
+
+.name {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 18px;
+  color: var(--dark);
+  margin-bottom: 4px;
+}
+
+.address {
+  font-size: 10px;
+  color: var(--gray-dark-2);
+  margin-bottom: 4px;
+}
+
+
+.footer {
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.like {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+}

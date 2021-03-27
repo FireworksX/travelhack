@@ -40,7 +40,7 @@ const App = observer(() => {
   useEffect(() => {
     setTimeout(() => {
       setStory('feed');
-    }, 2000);
+    }, 200);
   }, []);
 
   return (
