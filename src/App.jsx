@@ -27,6 +27,7 @@ import {
 } from '@vkontakte/icons';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 import { Planner } from './pages/Planner/Planner';
+import { Favorites } from './pages/Favorites/Favorites';
 const queryClient = new QueryClient();
 const rootStore = new RootStore();
 
@@ -89,6 +90,7 @@ const App = observer(() => {
           <Onboarding id="onBoarding" />
           <News id="feed" />
           <Planner id="planner" />
+          <Favorites id="favorites" />
         </Epic>
       </AppRoot>
     </AdaptivityProvider>

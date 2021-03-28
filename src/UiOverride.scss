@@ -5,3 +5,18 @@
 .vkuiPanelHeader__content-in {
   font-weight: 600;
 }
+
+button {
+  outline: none;
+  background: transparent;
+  border: none;
+}
+
+
+.nice-dates-day.-selected {
+  border-radius: 10px;
+  background: var(--accent);
+  &:before {
+    display: none;
+  }
+}

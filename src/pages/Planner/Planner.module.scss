@@ -1,3 +1,18 @@
+@keyframes hue {
+  0% {
+    filter: hue-rotate(0);
+  }
+  33% {
+    filter: hue-rotate(20deg);
+  }
+  66% {
+    filter: hue-rotate(10deg);
+  }
+  100% {
+    filter: hue-rotate(0);
+  }
+}
+
 .header {
   background: linear-gradient(
     34.78deg,
@@ -53,7 +68,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-left: 1px solid var(--gray);
+  position: relative;
+  &:after {
+    content: '';
+    height: 80%;
+    width: 1px;
+    background: var(--gray);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 }
 
 .headerDates {
@@ -68,6 +93,17 @@
   &:first-child {
     border-radius: 10px 0 0 10px;
     border-bottom: 1px solid var(--gray);
+    position: relative;
+    &:after {
+      content: '';
+      height: 80%;
+      width: 1px;
+      background: var(--gray);
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
   }
   &:last-child {
     border-radius: 0 10px 10px 0;
@@ -156,8 +192,8 @@
   align-items: center;
   color: var(--white);
   font-size: 12px;
-  border-radius: 5px;
-  height: 35px;
+  border-radius: 10px;
+  height: 40px;
 }
 
 .transferImage {

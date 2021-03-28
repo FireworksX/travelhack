@@ -1,14 +1,11 @@
 import React from 'react';
 import cn from 'classnames';
-import styles from './PlaceCard.module.scss';
+import styles from './PlaceCardWide.module.scss';
 import { Icon28LikeOutline } from '@vkontakte/icons';
 
-export const PlaceCard = ({ onClick, className }) => {
+export const PlaceCardWide = ({ onClick, className }) => {
   return (
     <div className={cn(className, styles.root)} onClick={onClick}>
-      <button className={styles.like}>
-        <Icon28LikeOutline />
-      </button>
       <div className={styles.cover}></div>
       <div className={styles.body}>
         <div className={styles.name}>
