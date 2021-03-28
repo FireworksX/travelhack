@@ -31,6 +31,8 @@ export const PlannerDetail = ({
     dateFrom,
   });
 
+  console.log(data);
+
   return (
     <Panel>
       <Div>

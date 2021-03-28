@@ -6,6 +6,10 @@
   font-weight: 600;
 }
 
+.vkuiTabbarItem--selected {
+  color: var(--accent);
+}
+
 button {
   outline: none;
   background: transparent;

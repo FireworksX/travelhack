@@ -123,8 +123,6 @@ export const Planner = () => {
     </ModalRoot>
   );
 
-  console.log(locationsList);
-
   return (
     <View activePanel={activePanel} modal={modalRoot}>
       <Panel id="main">
