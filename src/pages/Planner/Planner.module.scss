@@ -24,7 +24,6 @@
   padding: 40px 0;
   border-radius: 0 0 20px 20px;
   margin-bottom: 40px;
-  animation: hue 7s infinite;
 }
 
 .headerTitle {
@@ -69,7 +68,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-left: 1px solid var(--gray);
+  position: relative;
+  &:after {
+    content: '';
+    height: 80%;
+    width: 1px;
+    background: var(--gray);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 }
 
 .headerDates {
@@ -84,6 +93,17 @@
   &:first-child {
     border-radius: 10px 0 0 10px;
     border-bottom: 1px solid var(--gray);
+    position: relative;
+    &:after {
+      content: '';
+      height: 80%;
+      width: 1px;
+      background: var(--gray);
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
   }
   &:last-child {
     border-radius: 0 10px 10px 0;
@@ -172,8 +192,8 @@
   align-items: center;
   color: var(--white);
   font-size: 12px;
-  border-radius: 5px;
-  height: 35px;
+  border-radius: 10px;
+  height: 40px;
 }
 
 .transferImage {

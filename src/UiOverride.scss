@@ -11,3 +11,12 @@ button {
   background: transparent;
   border: none;
 }
+
+
+.nice-dates-day.-selected {
+  border-radius: 10px;
+  background: var(--accent);
+  &:before {
+    display: none;
+  }
+}
