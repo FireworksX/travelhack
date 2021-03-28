@@ -17,7 +17,7 @@ export const MapContainer = ({
   const structured = data
     ?.reduce((prev, { blocks }) => {
       console.log({ blocks });
-      return [...prev, ...blocks?.map(({ block }) => block?.payload?.coords)];
+      return [...prev, ...blocks?.map(({ block }) => block?.coords)];
     }, [])
     .filter(Boolean)
     .map(({ lat, long: lng }) => ({ lat, lng }));
