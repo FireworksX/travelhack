@@ -20,10 +20,10 @@ export const News = () => {
     pause,
   });
   useEffect(() => {
-    if (!isLoadingDetails && newsInfo) {
+    if (!isLoadingDetails && newsInfo && activeId !== null) {
       setActivePanel('detail');
     }
-  }, [isLoadingDetails, newsInfo]);
+  }, [newsInfo]);
   return (
     <View activePanel={activePanel} popout={popout}>
       <Panel id="main">

@@ -34,6 +34,7 @@ import { useCategoriesByCityName } from '../../hooks/useCategoriesByCityName';
 import { useReducerWithLogger } from '../../hooks/useReducerWithLogger';
 import { PlannerDetail } from './panels/PlannerDetail';
 import { PlaceDetail } from '../../panels/PlaceDetail/PlaceDetail';
+import { MapContainer } from '../../components/MapContainer';
 export const Planner = () => {
   const [activePanel, setActivePanel] = useState('main');
   const [activeModal, setActiveModal] = useState(null);
@@ -110,6 +111,9 @@ export const Planner = () => {
       </ModalPage>
       <ModalPage id="map" onClose={() => setActiveModal(null)}>
         <ModalPageHeader>Карта</ModalPageHeader>
+        <div style={{ height: 400 }}>
+          <MapContainer {...{ city, categories, dateTo, dateFrom }} />
+        </div>
       </ModalPage>
     </ModalRoot>
   );
@@ -226,7 +230,9 @@ export const Planner = () => {
       <PlannerDetail
         id="detail"
         onClickMap={() => setActiveModal('map')}
+        onBack={() => setActivePanel('main')}
         onGoLocation={() => setActivePanel('placeDetail')}
+        {...{ city, categories, dateTo, dateFrom }}
       />
       <PlaceDetail id="placeDetail" onBack={() => setActivePanel('detail')} />
     </View>

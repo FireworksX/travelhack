@@ -3,7 +3,7 @@ import { Panel, PanelHeaderButton, Div } from '@vkontakte/vkui';
 import styles from './PlannerDetail.module.scss';
 import { Icon36ChevronLeftOutline } from '@vkontakte/icons';
 import { PlaceCardWide } from '../../../components/PlaceCardWide/PlaceCardWide';
-
+import { MapContainer } from '../../../components/MapContainer';
 const EmptyCell = () => {
   return (
     <div className={styles.emptyCell}>
@@ -13,19 +13,33 @@ const EmptyCell = () => {
   );
 };
 
-export const PlannerDetail = ({ onClickMap, onGoLocation }) => {
+export const PlannerDetail = ({
+  onClickMap,
+  onGoLocation,
+  onBack,
+  city,
+  categories,
+  dateTo,
+  dateFrom,
+}) => {
   return (
     <Panel>
       <Div>
         <div className={styles.header}>
-          <button className={styles.back}>
+          <button className={styles.back} onClick={onBack}>
             <Icon36ChevronLeftOutline />
           </button>
           <div className={styles.city}>Москва</div>
           <div className={styles.dates}>27 марта — 2 апреля</div>
         </div>
       </Div>
-      <div className={styles.map} onClick={onClickMap}></div>
+      <div className={styles.map} onClick={onClickMap}>
+        <MapContainer
+          {...{ city, categories, dateTo, dateFrom }}
+          height={170}
+          mini={true}
+        />
+      </div>
       <Div>
         <div className={styles.days}>
           <div className={styles.day}>

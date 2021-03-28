@@ -12,13 +12,9 @@ export const NewsCard = ({
   title,
   description,
   image,
-  category: { name: categoryName, category_id },
-  source_name: sourceName,
-  social_info: {
-    visited_count: visitedCount,
-    likes_count: likesCount,
-    is_liked: isLiked,
-  },
+  category: { name: categoryName, categoryId },
+  sourceName,
+  socialInfo: { visitedCount, likesCount, isLiked },
 }) => {
   return (
     <div className={cn(className, styles.root)} onClick={onClick}>
