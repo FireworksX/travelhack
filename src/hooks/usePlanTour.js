@@ -1,9 +1,9 @@
 import { useQuery } from 'react-query';
-import { planTourQuery } from '../api/planTourQuery';
+import { plannerQuery } from '../api/plannerQuery';
 
 export const usePlanTour = ({ cityName, dateTo, dateFrom, categories }) => {
   const { isLoading, error, data } = useQuery('planTour', () =>
-    planTourQuery({ cityName, dateTo, dateFrom, categories })
+    plannerQuery({ cityName, dateTo, dateFrom, categories })
   );
   return { isLoading, error, data };
 };

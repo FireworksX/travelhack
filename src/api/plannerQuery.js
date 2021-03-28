@@ -1,11 +1,14 @@
-export const plannerQiuery = async ({ city, categories, dateTo, dateFrom }) => {
+import { format } from 'date-fns';
+const formatDate = (d) => format(d, 'yyyy-MM-dd');
+export const plannerQuery = async ({ city, categories, dateTo, dateFrom }) => {
+  console.log(formatDate(dateTo));
   const dataList = fetch('http://drop-table.tech/api/plan', {
     method: 'POST',
     body: JSON.stringify({
       city,
       categories: categories.map(({ id, chosen }) => ({ id, weight: +chosen })),
-      date_to: dateTo,
-      date_from: dateFrom,
+      date_to: formatDate(dateTo),
+      date_from: formatDate(dateFrom),
     }),
   }).then((resp) => resp.json());
   return dataList.map((data) => ({
