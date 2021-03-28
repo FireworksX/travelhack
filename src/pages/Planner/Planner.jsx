@@ -35,6 +35,7 @@ import { useReducerWithLogger } from '../../hooks/useReducerWithLogger';
 import { PlannerDetail } from './panels/PlannerDetail';
 import { PlaceDetail } from '../../panels/PlaceDetail/PlaceDetail';
 import { MapContainer } from '../../components/MapContainer';
+import { useLocatonsList } from '../../hooks/useLocationsList';
 export const Planner = () => {
   const [activePanel, setActivePanel] = useState('main');
   const [activeModal, setActiveModal] = useState(null);
@@ -48,6 +49,10 @@ export const Planner = () => {
     }
   );
   const cities = useCities();
+  const {
+    data: locationsList,
+    isFetching: isLocationFetching,
+  } = useLocatonsList({ city });
   const {
     data: categoriesLabels,
     isFetching: isCategoriesFetching,
