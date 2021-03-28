@@ -91,6 +91,7 @@ const App = observer(() => {
           <Onboarding id="onBoarding" />
           <News id="feed" />
           <Planner id="planner" />
+          <Favorites id="favorites" />
           <EmptyPage id="notification" />
           <EmptyPage id="profile" />
         </Epic>
