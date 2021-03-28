@@ -1,7 +1,6 @@
 import React from 'react';
 import cn from 'classnames';
 import styles from './PlaceCardWide.module.scss';
-import { Icon28LikeOutline } from '@vkontakte/icons';
 
 export const PlaceCardWide = ({ onClick, className }) => {
   return (
@@ -14,6 +13,7 @@ export const PlaceCardWide = ({ onClick, className }) => {
         <div className={styles.address}>
           Достопримечательность, Выставочный центр
         </div>
+        <button className={styles.button}>Подробнее</button>
       </div>
     </div>
   );
