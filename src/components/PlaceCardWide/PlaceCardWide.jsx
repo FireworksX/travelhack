@@ -2,17 +2,13 @@ import React from 'react';
 import cn from 'classnames';
 import styles from './PlaceCardWide.module.scss';
 
-export const PlaceCardWide = ({ onClick, className }) => {
+export const PlaceCardWide = ({ name, address, onClick, className }) => {
   return (
     <div className={cn(className, styles.root)} onClick={onClick}>
       <div className={styles.cover}></div>
       <div className={styles.body}>
-        <div className={styles.name}>
-          Выставка Достижений Народного Хозяйства
-        </div>
-        <div className={styles.address}>
-          Достопримечательность, Выставочный центр
-        </div>
+        <div className={styles.name}>{name}</div>
+        {address && <div className={styles.address}>{address}</div>}
         <button className={styles.button}>Подробнее</button>
       </div>
     </div>

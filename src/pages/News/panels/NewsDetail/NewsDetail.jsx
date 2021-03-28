@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './NewsDetail.module.scss';
+import cn from 'classnames';
 import {
   View,
   PanelHeader,
@@ -17,8 +18,9 @@ import {
   Icon28ShareOutline,
   Icon36ChevronLeftOutline,
 } from '@vkontakte/icons';
+import { PlaceCardWide } from '../../../../components/PlaceCardWide/PlaceCardWide';
 
-export const NewsDetail = ({ onBack, newsInfo }) => {
+export const NewsDetail = ({ onBack, newsInfo, onSelect }) => {
   if (newsInfo == null) return null;
   return (
     <Panel>
@@ -44,18 +46,29 @@ export const NewsDetail = ({ onBack, newsInfo }) => {
           <div className={styles.description}>
             {newsInfo.preview.description}
           </div>
+          {newsInfo.content.map(
+            (el) =>
+              ({
+                text: (
+                  <div className={cn(styles.description, styles.cell)}>
+                    {el.payload}
+                  </div>
+                ),
+                image: (
+                  <div className={cn(styles.cover, styles.cell)}>
+                    <img src={el.payload} alt="" />
+                  </div>
+                ),
+                location: (
+                  <PlaceCardWide
+                    className={styles.cell}
+                    name={el.payload.name}
+                    onClick={onSelect}
+                  />
+                ),
+              }[el.type])
+          )}
         </UiDiv>
-        <div className={styles.cover}></div>
-        <div className={styles.description}>
-          Тут просто много бесполезного текста, тут тоже много бесполезного
-          текста, тут тоже много бесполезного текста, тут тоже много
-          бесполезного текста, тут тоже много бесполезного текста, тут тоже
-          много бесполезного текста, тут тоже много, Тут просто много
-          бесполезного текста, тут тоже много бесполезного текста, тут тоже
-          много бесполезного текста, тут тоже много бесполезного текста, тут
-          тоже много бесполезного текста, тут тоже много бесполезного текста,
-          тут тоже много
-        </div>
 
         <Div />
         <Div />

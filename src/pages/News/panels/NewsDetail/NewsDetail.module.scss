@@ -50,6 +50,10 @@
   line-height: 21px;
 }
 
+.cell {
+  margin-bottom: 20px;
+}
+
 .more {
   font-size: 14px;
   line-height: 22px;
@@ -60,6 +64,10 @@
 .cover {
   height: 200px;
   background: var(--gray);
+  img {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .footer {

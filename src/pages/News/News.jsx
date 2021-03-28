@@ -5,6 +5,7 @@ import { NewsCard } from '../../components/NewsCard/NewsCard';
 import { NewsDetail } from './panels/NewsDetail/NewsDetail';
 import { useNewsList } from '../../hooks/useNewsList';
 import { useNewsObjectInfo } from '../../hooks/useNewsObjectInfo';
+import { PlaceDetail } from '../../panels/PlaceDetail/PlaceDetail';
 
 export const News = () => {
   const [activePanel, setActivePanel] = useState('main');
@@ -53,7 +54,12 @@ export const News = () => {
           setActivePanel('main');
           setActiveId(null);
         }}
+        onSelect={() => {
+          setActivePanel('placeDetail');
+          setActiveId(null);
+        }}
       />
+      <PlaceDetail id="placeDetail" />
     </View>
   );
 };

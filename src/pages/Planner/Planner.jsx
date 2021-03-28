@@ -216,7 +216,7 @@ export const Planner = () => {
             </Div>
           </div>
           <div className={styles.group}>
-            <div className={styles.groupHeader}>Куда пойти</div>
+            <div className={styles.groupHeader}>Аренда машины</div>
             <HorizontalScroll>
               <div className={styles.scroll}>
                 <CarCard cover={carSedan} className={styles.carCell} />
