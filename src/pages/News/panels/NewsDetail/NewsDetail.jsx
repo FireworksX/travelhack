@@ -18,7 +18,7 @@ import {
   Icon36ChevronLeftOutline,
 } from '@vkontakte/icons';
 
-export const NewsDetail = ({ onBack, newsId, newsInfo }) => {
+export const NewsDetail = ({ onBack, newsInfo }) => {
   if (newsInfo == null) return null;
   return (
     <Panel>
