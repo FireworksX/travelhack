@@ -78,8 +78,8 @@ export const planTourQuery = ({ dateTo, dateFrom, cityName, categories }) =>
                     description: 'экскурсия по неве',
                     image: '',
                     coords: {
-                      lat: 1,
-                      long: 1,
+                      lat: 59.9414315,
+                      long: 30.3890513,
                     },
                     likesCount: 1232,
                     isLiked: true,
@@ -102,8 +102,8 @@ export const planTourQuery = ({ dateTo, dateFrom, cityName, categories }) =>
                     description: 'тюз',
                     image: '',
                     coords: {
-                      lat: 1,
-                      long: 1,
+                      lat: 59.9024076,
+                      long: 30.2937502,
                     },
                     likesCount: 1232,
                     isLiked: true,
@@ -115,12 +115,12 @@ export const planTourQuery = ({ dateTo, dateFrom, cityName, categories }) =>
                 block: {
                   type: 'place',
                   payload: {
-                    name: 'крейсе Аврора',
-                    description: 'крейсе Аврора',
+                    name: 'крейсер Аврора',
+                    description: 'крейсер Аврора',
                     image: '',
                     coords: {
-                      lat: 1,
-                      long: 1,
+                      lat: 59.9544502,
+                      long: 30.3370089,
                     },
                     likesCount: 1232,
                     isLiked: true,

@@ -33,6 +33,7 @@ import { format } from 'date-fns';
 import { useCategoriesByCityName } from '../../hooks/useCategoriesByCityName';
 import { useReducerWithLogger } from '../../hooks/useReducerWithLogger';
 import { PlannerDetail } from './panels/PlannerDetail';
+import { MapContainer } from '../../components/MapContainer';
 export const Planner = () => {
   const [activePanel, setActivePanel] = useState('main');
   const [activeModal, setActiveModal] = useState(null);
@@ -109,6 +110,9 @@ export const Planner = () => {
       </ModalPage>
       <ModalPage id="map" onClose={() => setActiveModal(null)}>
         <ModalPageHeader>Карта</ModalPageHeader>
+        <div style={{ height: 400 }}>
+          <MapContainer {...{ city, categories, dateTo, dateFrom }} />
+        </div>
       </ModalPage>
     </ModalRoot>
   );
@@ -222,7 +226,12 @@ export const Planner = () => {
           </div>
         </div>
       </Panel>
-      <PlannerDetail id="detail" onClickMap={() => setActiveModal('map')} />
+      <PlannerDetail
+        id="detail"
+        onBack={() => setActivePanel('main')}
+        onClickMap={() => setActiveModal('map')}
+        {...{ city, categories, dateTo, dateFrom }}
+      />
     </View>
   );
 };

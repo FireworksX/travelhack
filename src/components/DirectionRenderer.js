@@ -9,9 +9,10 @@ export function MapDirectionsRenderer(props) {
     const { places, travelMode = google.maps.TravelMode.DRIVING } = props;
 
     const waypoints = places.map((p) => ({
-      location: { lat: p.latitude, lng: p.longitude },
+      location: { lat: p.lat, lng: p.lng },
       stopover: true,
     }));
+    if (waypoints.length === 0) return;
     const origin = waypoints.shift().location;
     const destination = waypoints.pop().location;
 
@@ -37,7 +38,7 @@ export function MapDirectionsRenderer(props) {
   });
 
   if (error) {
-    return <h1>{error}</h1>;
+    return <h1>{error.toString()}</h1>;
   }
   return directions && <DirectionsRenderer directions={directions} />;
 }
