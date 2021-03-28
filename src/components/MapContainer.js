@@ -1,4 +1,4 @@
-import { usePlanTour } from '../hooks/usePlanTour';
+import { usePlannerList } from '../hooks/usePlannerList';
 import { MapComponent } from './MapComponent';
 export const MapContainer = ({
   city,
@@ -7,8 +7,8 @@ export const MapContainer = ({
   dateFrom,
   height = 400,
 }) => {
-  const { data, isLoading } = usePlanTour({
-    cityName: city,
+  const { data, isLoading } = usePlannerList({
+    city,
     categories,
     dateTo,
     dateFrom,
