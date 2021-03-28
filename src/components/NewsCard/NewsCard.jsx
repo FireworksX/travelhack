@@ -10,9 +10,9 @@ export const NewsCard = ({
   onClick,
   id,
   title,
-  description,
+  preview: { description },
   image,
-  category: { name: categoryName, categoryId },
+  category: { name: categoryName, categoryId, color },
   sourceName,
   socialInfo: { visitedCount, likesCount, isLiked },
 }) => {
@@ -20,7 +20,7 @@ export const NewsCard = ({
     <div className={cn(className, styles.root)} onClick={onClick}>
       <UiDiv>
         <div className={styles.header}>
-          <div className={styles.icon} />
+          <div className={styles.icon} style={{ backgroundColor: color }} />
           <div className={styles.category}>{categoryName}</div>
           <div className={styles.source}>— {sourceName}</div>
           <button className={styles.other}>
@@ -31,7 +31,9 @@ export const NewsCard = ({
         <div className={styles.description}>{description}</div>
         <div className={styles.more}>Читать полностью...</div>
       </UiDiv>
-      <div className={styles.cover}></div>
+      <div className={styles.cover} style={{ overflow: 'hidden' }}>
+        <img alt="" style={{ backgroundSize: 'cover' }} src={image} />
+      </div>
       <UiDiv className={styles.footer}>
         <button className={styles.footerButton}>
           <Icon28FireOutline />
