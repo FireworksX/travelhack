@@ -35,6 +35,7 @@ import { useReducerWithLogger } from '../../hooks/useReducerWithLogger';
 import { PlannerDetail } from './panels/PlannerDetail';
 import { PlaceDetail } from '../../panels/PlaceDetail/PlaceDetail';
 import { MapContainer } from '../../components/MapContainer';
+import { SmartMapContainer } from '../../components/SmartMapContainer';
 import { useLocatonsList } from '../../hooks/useLocationsList';
 export const Planner = () => {
   const [activePanel, setActivePanel] = useState('main');
@@ -117,7 +118,7 @@ export const Planner = () => {
       <ModalPage id="map" onClose={() => setActiveModal(null)}>
         <ModalPageHeader>Карта</ModalPageHeader>
         <div style={{ height: 400 }}>
-          <MapContainer {...{ city, categories, dateTo, dateFrom }} />
+          <SmartMapContainer {...{ city, categories, dateTo, dateFrom }} />
         </div>
       </ModalPage>
     </ModalRoot>

@@ -1,14 +1,19 @@
 import { usePlannerList } from '../hooks/usePlannerList';
 import { MapComponent } from './MapComponent';
-export const MapContainer = ({
+export const SmartMapContainer = ({
   city,
   categories,
   dateTo,
   dateFrom,
   height = 400,
-  data,
 }) => {
-  if (!data) return null;
+  const { data, isLoading } = usePlannerList({
+    city,
+    categories,
+    dateTo,
+    dateFrom,
+  });
+  if (!isLoading && !data) return;
   const structured = data
     ?.reduce((prev, { blocks }) => {
       return [...prev, ...blocks?.map(({ block }) => block?.coords)];
