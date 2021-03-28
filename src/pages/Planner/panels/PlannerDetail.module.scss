@@ -35,3 +35,62 @@
   background: var(--gray);
   margin-bottom: 30px;
 }
+
+.dayHeader {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 25px;
+}
+
+.dayCell {
+  margin-bottom: 20px;
+}
+
+.emptyCell {
+  background: var(--white);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  box-shadow: 0 0 30px rgba(204, 204, 204, 0.25);
+}
+
+.emptyCellLabel {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.emptyCellDesc {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--gray-dark-2);
+}
+
+.days {
+  padding-left: 30px;
+  position: relative;
+  &:after {
+    content: '';
+    width: 3px;
+    height: 100%;
+    background: var(--gray);
+    position: absolute;
+    left: 10px;
+    top: 0;
+  }
+}
+
+.day {
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+    left: -29px;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--gray);
+  }
+}

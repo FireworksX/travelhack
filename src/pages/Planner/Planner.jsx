@@ -33,6 +33,7 @@ import { format } from 'date-fns';
 import { useCategoriesByCityName } from '../../hooks/useCategoriesByCityName';
 import { useReducerWithLogger } from '../../hooks/useReducerWithLogger';
 import { PlannerDetail } from './panels/PlannerDetail';
+import { PlaceDetail } from '../../panels/PlaceDetail/PlaceDetail';
 export const Planner = () => {
   const [activePanel, setActivePanel] = useState('main');
   const [activeModal, setActiveModal] = useState(null);
@@ -142,7 +143,7 @@ export const Planner = () => {
                   <span className={styles.sideIcon}>
                     <Icon24CalendarOutline />
                   </span>
-                  {(dateFrom && format(dateFrom, 'dd.mm.yyyy')) || 'Туда'}
+                  {(dateFrom && format(dateFrom, 'dd.MM.yyyy')) || 'Туда'}
                 </button>
 
                 <button
@@ -152,7 +153,7 @@ export const Planner = () => {
                   <span className={styles.sideIcon}>
                     <Icon24CalendarOutline />
                   </span>
-                  {(dateTo && format(dateTo, 'dd.mm.yyyy')) || 'Обратно'}
+                  {(dateTo && format(dateTo, 'dd.MM.yyyy')) || 'Обратно'}
                 </button>
               </div>
               <HorizontalScroll>
@@ -222,7 +223,12 @@ export const Planner = () => {
           </div>
         </div>
       </Panel>
-      <PlannerDetail id="detail" onClickMap={() => setActiveModal('map')} />
+      <PlannerDetail
+        id="detail"
+        onClickMap={() => setActiveModal('map')}
+        onGoLocation={() => setActivePanel('placeDetail')}
+      />
+      <PlaceDetail id="placeDetail" />
     </View>
   );
 };
