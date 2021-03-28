@@ -31,8 +31,6 @@ export const PlannerDetail = ({
     dateFrom,
   });
 
-  console.log(data);
-
   return (
     <Panel>
       <Div>
@@ -45,23 +43,24 @@ export const PlannerDetail = ({
         </div>
       </Div>
       <div className={styles.map} onClick={onClickMap}>
-        <MapContainer
-          {...{ city, categories, dateTo, dateFrom }}
-          height={170}
-          mini={true}
-        />
+        <MapContainer data={data} height={170} mini={true} />
       </div>
       <Div>
         <div className={styles.days}>
-          <div className={styles.day}>
-            <div className={styles.dayHeader}>27 марта</div>
-            <div className={styles.dayCell}>
-              <PlaceCardWide onClick={onGoLocation} />
+          {data?.map((el) => (
+            <div className={styles.day}>
+              <div className={styles.dayHeader}>27 марта</div>
+              {el.blocks.map((block) => (
+                <div className={styles.dayCell}>
+                  <PlaceCardWide
+                    name={block.block.name}
+                    cover={block.block.image}
+                    onClick={onGoLocation}
+                  />
+                </div>
+              ))}
             </div>
-            <div className={styles.dayCell}>
-              <EmptyCell />
-            </div>
-          </div>
+          ))}
         </div>
       </Div>
     </Panel>

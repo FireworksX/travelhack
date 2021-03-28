@@ -6,23 +6,16 @@ export const MapContainer = ({
   dateTo,
   dateFrom,
   height = 400,
+  data,
 }) => {
-  const { data, isLoading } = usePlannerList({
-    city,
-    categories,
-    dateTo,
-    dateFrom,
-  });
-  if (isLoading) return null;
+  if (!data) return null;
   const structured = data
     ?.reduce((prev, { blocks }) => {
-      console.log({ blocks });
       return [...prev, ...blocks?.map(({ block }) => block?.coords)];
     }, [])
     .filter(Boolean)
-    .map(({ lat, long: lng }) => ({ lat, lng }));
+    .map(({ lat, lng }) => ({ lat, lng }));
 
-  console.log({ structured });
   return structured ? (
     <MapComponent
       data={{ places: structured, data }}
