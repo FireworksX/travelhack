@@ -32,13 +32,15 @@ import { plannerReducer } from './plannerReducer';
 import { format } from 'date-fns';
 import { useCategoriesByCityName } from '../../hooks/useCategoriesByCityName';
 import { useReducerWithLogger } from '../../hooks/useReducerWithLogger';
+import { PlannerDetail } from './panels/PlannerDetail';
+import { MapContainer } from '../../components/MapContainer';
 export const Planner = () => {
   const [activePanel, setActivePanel] = useState('main');
   const [activeModal, setActiveModal] = useState(null);
   const [{ city, categories, dateTo, dateFrom }, dispatch] = useReducer(
     useReducerWithLogger(plannerReducer),
     {
-      city: null,
+      city: 'Москва',
       categories: null,
       dateTo: null,
       dateFrom: null,
@@ -79,27 +81,37 @@ export const Planner = () => {
       <ModalPage id="dateFrom" onClose={() => setActiveModal(null)}>
         <div className={styles.calendarWrapper}>
           <ModalPageHeader>Дата начала</ModalPageHeader>
-          <DatePickerCalendar
-            date={dateFrom || new Date()}
-            onDateChange={(date) => {
-              dispatch({ type: 'set-dateFrom', payload: date });
-              setActiveModal(null);
-            }}
-            locale={enGB}
-          />
+          <Div>
+            <DatePickerCalendar
+              date={dateFrom || new Date()}
+              onDateChange={(date) => {
+                dispatch({ type: 'set-dateFrom', payload: date });
+                setActiveModal('dateTo');
+              }}
+              locale={enGB}
+            />
+          </Div>
         </div>
       </ModalPage>
       <ModalPage id="dateTo" onClose={() => setActiveModal(null)}>
         <div className={styles.calendarWrapper}>
           <ModalPageHeader>Дата окончания</ModalPageHeader>
-          <DatePickerCalendar
-            date={dateTo || new Date()}
-            locale={enGB}
-            onDateChange={(date) => {
-              dispatch({ type: 'set-dateTo', payload: date });
-              setActiveModal(null);
-            }}
-          />
+          <Div>
+            <DatePickerCalendar
+              date={dateTo || new Date()}
+              locale={enGB}
+              onDateChange={(date) => {
+                dispatch({ type: 'set-dateTo', payload: date });
+                setActiveModal(null);
+              }}
+            />
+          </Div>
+        </div>
+      </ModalPage>
+      <ModalPage id="map" onClose={() => setActiveModal(null)}>
+        <ModalPageHeader>Карта</ModalPageHeader>
+        <div style={{ height: 400 }}>
+          <MapContainer {...{ city, categories, dateTo, dateFrom }} />
         </div>
       </ModalPage>
     </ModalRoot>
@@ -134,7 +146,7 @@ export const Planner = () => {
                   <span className={styles.sideIcon}>
                     <Icon24CalendarOutline />
                   </span>
-                  {(dateFrom && format(dateFrom, 'yyyy-mm-dd')) || 'Начало'}
+                  {(dateFrom && format(dateFrom, 'dd.mm.yyyy')) || 'Туда'}
                 </button>
 
                 <button
@@ -144,7 +156,7 @@ export const Planner = () => {
                   <span className={styles.sideIcon}>
                     <Icon24CalendarOutline />
                   </span>
-                  {(dateTo && format(dateTo, 'yyyy-mm-dd')) || 'Конец'}
+                  {(dateTo && format(dateTo, 'dd.mm.yyyy')) || 'Обратно'}
                 </button>
               </div>
               <HorizontalScroll>
@@ -171,22 +183,14 @@ export const Planner = () => {
                       {name}
                     </button>
                   ))}
-                  {/* <button className={styles.categoryCell}>Места</button>
-                  <button
-                    className={cn(
-                      styles.categoryCell,
-                      styles.categoryCellActive
-                    )}
-                  >
-                    Маршруты
-                  </button>
-                  <button className={styles.categoryCell}>Новости</button>
-                  <button className={styles.categoryCell}>Места</button>
-                  <button className={styles.categoryCell}>Места</button> */}
-                  {/* <button className={styles.categoryCell}>Места</button> */}
                 </div>
               </HorizontalScroll>
-              <button className={styles.submit}>Построить маршрут</button>
+              <button
+                className={styles.submit}
+                onClick={() => setActivePanel('detail')}
+              >
+                Построить маршрут
+              </button>
             </UiDiv>
           </div>
           <div className={styles.group}>
@@ -200,7 +204,6 @@ export const Planner = () => {
             </HorizontalScroll>
           </div>
           <div className={styles.group}>
-            <div className={styles.groupHeader}>Заберем вас</div>
             <Div>
               <div className={styles.transfer}>
                 <div className={styles.transferName}>
@@ -223,6 +226,12 @@ export const Planner = () => {
           </div>
         </div>
       </Panel>
+      <PlannerDetail
+        id="detail"
+        onBack={() => setActivePanel('main')}
+        onClickMap={() => setActiveModal('map')}
+        {...{ city, categories, dateTo, dateFrom }}
+      />
     </View>
   );
 };

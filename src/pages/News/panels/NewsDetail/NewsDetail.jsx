@@ -29,11 +29,6 @@ export const NewsDetail = ({ onBack, newsId, newsInfo }) => {
               <Icon36ChevronLeftOutline />
             </PanelHeaderButton>
           }
-          right={
-            <PanelHeaderButton>
-              <Icon24MoreHorizontal />
-            </PanelHeaderButton>
-          }
         >
           Запись
         </PanelHeader>
