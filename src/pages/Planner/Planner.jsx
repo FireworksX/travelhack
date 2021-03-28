@@ -228,7 +228,7 @@ export const Planner = () => {
         onClickMap={() => setActiveModal('map')}
         onGoLocation={() => setActivePanel('placeDetail')}
       />
-      <PlaceDetail id="placeDetail" />
+      <PlaceDetail id="placeDetail" onBack={() => setActivePanel('detail')} />
     </View>
   );
 };

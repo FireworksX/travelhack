@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './PlaceDetail.module.scss';
-import { Cell, Panel } from '@vkontakte/vkui';
+import { Cell, Group, Header, Panel, Div } from '@vkontakte/vkui';
 import { UiDiv } from '../../components/UiDiv/UiDiv';
 import {
   Icon24DismissDark,
@@ -9,12 +9,12 @@ import {
   Icon28TextLiveOutline,
 } from '@vkontakte/icons';
 
-export const PlaceDetail = () => {
+export const PlaceDetail = ({ onBack }) => {
   return (
     <Panel>
       <div className={styles.gallery}></div>
       <div className={styles.content}>
-        <button className={styles.close}>
+        <button className={styles.close} onClick={onBack}>
           <Icon24DismissDark />
         </button>
         <UiDiv>
@@ -34,6 +34,14 @@ export const PlaceDetail = () => {
         <Cell indicator="Русский" before={<Icon28TextLiveOutline />}>
           Язык
         </Cell>
+        <Group header={<Header>Описание</Header>}>
+          <Div>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda
+            cum doloremque eos ex explicabo fuga incidunt iure magni, minus
+            natus necessitatibus nisi omnis quo quos rem rerum, sequi vero
+            vitae.
+          </Div>
+        </Group>
       </div>
     </Panel>
   );
