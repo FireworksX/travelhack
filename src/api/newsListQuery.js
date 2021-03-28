@@ -66,7 +66,7 @@ export const newsListQuery = async () => {
     .then(({ data }) => data);
   return (dataList || [])
     .map((data, idx) => ({
-      id: data?.idx,
+      id: data?.id,
       preview: {
         title: data?.preview?.title,
         description: `${
