@@ -4,6 +4,7 @@ import styles from './PlannerDetail.module.scss';
 import { Icon36ChevronLeftOutline } from '@vkontakte/icons';
 import { PlaceCardWide } from '../../../components/PlaceCardWide/PlaceCardWide';
 import { MapContainer } from '../../../components/MapContainer';
+import { usePlannerList } from '../../../hooks/usePlannerList';
 const EmptyCell = () => {
   return (
     <div className={styles.emptyCell}>
@@ -22,6 +23,14 @@ export const PlannerDetail = ({
   dateTo,
   dateFrom,
 }) => {
+  // -> usePlannerList <-
+  const { data, isLoading } = usePlannerList({
+    city,
+    categories,
+    dateTo,
+    dateFrom,
+  });
+
   return (
     <Panel>
       <Div>
