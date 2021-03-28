@@ -123,6 +123,8 @@ export const Planner = () => {
     </ModalRoot>
   );
 
+  console.log(locationsList);
+
   return (
     <View activePanel={activePanel} modal={modalRoot}>
       <Panel id="main">
@@ -203,9 +205,13 @@ export const Planner = () => {
             <div className={styles.groupHeader}>Куда пойти</div>
             <HorizontalScroll>
               <div className={styles.scroll}>
-                <PlaceCard className={styles.scrollCell} />
-                <PlaceCard className={styles.scrollCell} />
-                <PlaceCard className={styles.scrollCell} />
+                {locationsList?.map((el) => (
+                  <PlaceCard
+                    name={el.name}
+                    cover={el.image}
+                    className={styles.scrollCell}
+                  />
+                ))}
               </div>
             </HorizontalScroll>
           </div>
