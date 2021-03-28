@@ -5,6 +5,7 @@ import { Icon36ChevronLeftOutline } from '@vkontakte/icons';
 import { PlaceCardWide } from '../../../components/PlaceCardWide/PlaceCardWide';
 import { MapContainer } from '../../../components/MapContainer';
 import { usePlannerList } from '../../../hooks/usePlannerList';
+import { format } from 'date-fns';
 const EmptyCell = () => {
   return (
     <div className={styles.emptyCell}>
@@ -49,7 +50,7 @@ export const PlannerDetail = ({
         <div className={styles.days}>
           {data?.map((el) => (
             <div className={styles.day}>
-              <div className={styles.dayHeader}>27 марта</div>
+              <div className={styles.dayHeader}>{el.date}</div>
               {el.blocks.map((block) => (
                 <div className={styles.dayCell}>
                   <PlaceCardWide
