@@ -10,7 +10,7 @@ export const NewsCard = ({
   onClick,
   id,
   title,
-  description,
+  preview: { description },
   image,
   category: { name: categoryName, categoryId },
   sourceName,
@@ -31,7 +31,12 @@ export const NewsCard = ({
         <div className={styles.description}>{description}</div>
         <div className={styles.more}>Читать полностью...</div>
       </UiDiv>
-      <div className={styles.cover}></div>
+      <div className={styles.cover} style={{ overflow: 'hidden' }}>
+        <img
+          style={{ backgroundSize: 'cover' }}
+          src="https://i.pinimg.com/originals/fb/67/30/fb67309239843593d1e1ddd2fb7f5df2.jpg"
+        />
+      </div>
       <UiDiv className={styles.footer}>
         <button className={styles.footerButton}>
           <Icon28FireOutline />
