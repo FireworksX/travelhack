@@ -19,6 +19,7 @@ import {
 } from '@vkontakte/icons';
 
 export const NewsDetail = ({ onBack, newsId, newsInfo }) => {
+  console.log(newsInfo);
   if (newsInfo == null) return null;
   return (
     <Panel>
